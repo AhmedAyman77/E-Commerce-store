@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
-import { redis } from "../config/redis.js";
+import { redis } from "../lib/redis.js";
 import User from "../models/user.model.js";
+import jwt from "jsonwebtoken";
 
 const generateTokens = (userId) => {
     const accessToken = jwt.sign({ userId }, process.env.ACCESS_TOKEN_SECRET, {
@@ -66,20 +66,20 @@ export const login = async(req, res) => {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
 
-        if (!user || !(await user.comparePassword(password))) {
+        if (user && (await user.comparePassword(password))) {
+            const { accessToken, refreshToken } = generateTokens(user._id);
+            await storeRefreshToken(user._id, refreshToken);
+            setCookies(res, accessToken, refreshToken);
+
+            res.json({
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role,
+            });
+        } else {
             res.status(400).json({ message: "Invalid email or password" });
         }
-
-        const { accessToken, refreshToken } = generateTokens(user._id);
-        await storeRefreshToken(user._id, refreshToken);
-        setCookies(res, accessToken, refreshToken);
-
-        res.json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            role: user.role,
-        });
     } catch (error) {
         console.log("Error in login controller", error.message);
         res.status(500).json({ message: error.message });
