@@ -1,36 +1,36 @@
 {
-    "name": "e-commerce-store",
-    "version": "1.0.0",
-    "description": "",
-    "main": "server.js",
-    "scripts": {
-        "start": "node server/server.js",
-        "dev": "nodemon server/server.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/AhmedAyman77/E-Commerce-store-.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "type": "module",
-    "bugs": {
-        "url": "https://github.com/AhmedAyman77/E-Commerce-store-/issues"
-    },
-    "homepage": "https://github.com/AhmedAyman77/E-Commerce-store-#readme",
-    "dependencies": {
-        "bcryptjs": "^3.0.3",
-        "cloudinary": "^2.8.0",
-        "cookie-parser": "^1.4.7",
-        "dotenv": "^17.2.3",
-        "express": "^5.2.1",
-        "ioredis": "^5.8.2",
-        "jsonwebtoken": "^9.0.3",
-        "mongoose": "^9.0.1",
-        "stripe": "^20.0.0"
-    },
-    "devDependencies": {
-        "nodemon": "^3.1.11"
-    }
+  "name": "e-commerce-store",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node init && node server/server.js",
+    "dev": "node init && nodemon server/server.js",
+    "build": "node init && cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedAyman77/E-Commerce-store-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/AhmedAyman77/E-Commerce-store-/issues"
+  },
+  "homepage": "https://github.com/AhmedAyman77/E-Commerce-store-#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.8.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "ioredis": "^5.8.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.0.1",
+    "stripe": "^20.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
 }

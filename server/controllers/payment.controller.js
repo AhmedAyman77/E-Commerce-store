@@ -43,11 +43,9 @@ export const createCheckoutSession = async(req, res) => {
             mode: "payment",
             success_url: `${process.env.CLIENT_URL}/purchase-success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.CLIENT_URL}/purchase-cancel`,
-            discounts: coupon ?
-                [{
-                    coupon: await createStripeCoupon(coupon.discountPercentage),
-                }, ] :
-                [],
+            discounts: coupon ? [{
+                coupon: await createStripeCoupon(coupon.discountPercentage),
+            }, ] : [],
             metadata: {
                 userId: req.user._id.toString(),
                 couponCode: couponCode || "",
